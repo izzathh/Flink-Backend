@@ -51,8 +51,8 @@ const verifyEmailAndSentOtp = async (email, isAdmin) => {
     port: 587,
     secure: false,
     auth: {
-      user: 'developer@itflexsolutions.com',
-      pass: 'ITFPass@2022#DeV'
+      user: process.env.MAIL_AUTH_USER,
+      pass: process.env.MAIL_AUTH_PASS
     },
     tls: {
       rejectUnauthorized: false
@@ -60,7 +60,7 @@ const verifyEmailAndSentOtp = async (email, isAdmin) => {
   });
 
   let mailOptions = {
-    from: 'developer@itflexsolutions.com',
+    from: process.env.MAIL_AUTH_USER,
     to: email,
     subject: 'OTP for reset password',
     html: `The OTP for resetting your password is <strong>${otp}</strong> Please note that this otp is only valid for 15 minutes.`
